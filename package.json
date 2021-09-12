@@ -1,7 +1,7 @@
 {
-  "name": "206693-buy-and-sell-3",
+  "name": "buy-and-sell",
   "version": "1.0.0",
-  "description": "\"Куплю. Продам\"",
+  "description": "Куплю. Продам",
   "main": "./src/service/service.js",
   "scripts": {
     "start": "node ./src/service/service.js",
