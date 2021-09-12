@@ -3,6 +3,7 @@
 const {getRandomNum} = require(`../../utils.js`);
 
 const DEFAULT_COUNT = 1;
+const MAX_COUNT = 1000;
 const FILE_NAME = `mocks.json`;
 
 const TITLES = [
@@ -61,6 +62,12 @@ const PICTURE = {
 
 module.exports = {
   name: `--generate`,
-  run() {
+  run(params) {
+    const count = Number(params[0]) || DEFAULT_COUNT;
+    if (count > MAX_COUNT) {
+      console.log(`Не больше ${MAX_COUNT} объявлений`);
+      process.exit(1);
+    }
+    console.log(`Generate ${count} mocks`);
   }
 };

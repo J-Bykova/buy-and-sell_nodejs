@@ -8,6 +8,9 @@ const args = process.argv.slice(2);
 // Получаем команду
 const command = args[0];
 
+// Получаем параметры
+const params = args.slice(1);
+
 // Если команда не переданна
 if (!command) {
   console.log(`No command passed`);
@@ -22,4 +25,7 @@ if (!Cli[command]) {
   process.exit(1);
 }
 
-Cli[command].run();
+// Проверяем сколько агруметнов переданно
+
+
+Cli[command].run(params);
