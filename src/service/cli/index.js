@@ -1,15 +1,11 @@
 'use strict';
 
-const version = require(`./versionjs`);
-const help = require(`./help.js`);
-const generate = require(`./generate.js`);
+const version = require(`./version.js`);
+// const help = require(`./help.js`);
+// const generate = require(`./generate.js`);
 
-const Cli = {
+module.exports.Cli = {
   [version.name]: version,
-  [help.name]: help,
-  [generate.name]: generate
-};
-
-module.exports = {
-  Cli,
+  // [help.name]: help,
+  // [generate.name]: generate
 };
