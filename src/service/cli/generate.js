@@ -1,5 +1,7 @@
 'use strict';
 
+const {getRandomNum} = require(`../../utils.js`);
+
 const DEFAULT_COUNT = 1;
 const FILE_NAME = `mocks.json`;
 
@@ -52,7 +54,7 @@ const SUM = {
   MAX: 100000,
 };
 
-const PictureRestrict = {
+const PICTURE = {
   MIN: 1,
   MAX: 16,
 };
