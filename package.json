@@ -6,7 +6,11 @@
   "scripts": {
     "start": "node ./src/service/service.js",
     "test": "npm run eslint",
-    "eslint": "eslint --ext .js src/"
+    "eslint": "eslint --ext .js src/",
+    "test_no_args": "node ./src/service/service.js",
+    "test_unknown": "node ./src/service/service.js --ugly",
+    "test_help": "node ./src/service/service.js --help",
+    "test_version": "node ./src/service/service.js --version"
   },
   "repository": {
     "type": "git",
