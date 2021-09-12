@@ -25,7 +25,4 @@ if (!Cli[command]) {
   process.exit(1);
 }
 
-// Проверяем сколько агруметнов переданно
-
-
 Cli[command].run(params);
