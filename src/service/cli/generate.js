@@ -1,6 +1,7 @@
 'use strict';
 
 const {getRandomNum} = require(`../../utils.js`);
+const fs = require("fs");
 
 const DEFAULT_COUNT = 1;
 const MAX_COUNT = 1000;
@@ -45,10 +46,10 @@ const CATEGORIES = [
   `Журналы`,
 ];
 
-const TYPE = {
-  OFFER: `offer`,
-  SALE: `sale`,
-};
+const TYPE = [
+  `offer`,
+  `sale`,
+];
 
 const SUM = {
   MIN: 1000,
@@ -60,6 +61,25 @@ const PICTURE = {
   MAX: 16,
 };
 
+const getImgName = (minImg, maxImg) => {
+  return `item${(getRandomNum(minImg, maxImg))}.jpg`;
+};
+
+const generateOffers = (count) => {
+  const offers = [];
+  for (let i = 0; i < count; i++) {
+    offers.push({
+      type: TYPE[getRandomNum(0, TYPE.length - 1)],
+      title: TITLES[getRandomNum(0, TITLES.length - 1)],
+      description: DESCRIPTION[getRandomNum(0, DESCRIPTION.length - 1)],
+      sum: getRandomNum(SUM.MIN, SUM.MAX),
+      picture: getImgName(PICTURE.MIN, PICTURE.MAX),
+      category: CATEGORIES[getRandomNum(0, CATEGORIES.length - 1)],
+    });
+  }
+  return offers;
+};
+
 module.exports = {
   name: `--generate`,
   run(params) {
@@ -68,6 +88,8 @@ module.exports = {
       console.log(`Не больше ${MAX_COUNT} объявлений`);
       process.exit(1);
     }
-    console.log(`Generate ${count} mocks`);
+    const json = JSON.stringify(generateOffers(count), null, 4);
+
+    fs.writeFileSync(FILE_NAME, json);
   }
 };
