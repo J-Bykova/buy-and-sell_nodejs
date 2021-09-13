@@ -85,8 +85,7 @@ module.exports = {
   run(params) {
     const count = Number(params[0]) || DEFAULT_COUNT;
     if (count > MAX_COUNT) {
-      console.log(`Не больше ${MAX_COUNT} объявлений`);
-      process.exit(1);
+      throw new Error(`Не больше ${MAX_COUNT} объявлений`);
     }
     const json = JSON.stringify(generateOffers(count), null, 4);
 
