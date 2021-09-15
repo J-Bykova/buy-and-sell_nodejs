@@ -1,7 +1,8 @@
 'use strict';
 
+const chalk = require(`chalk`);
 const {getRandomNum} = require(`../../utils.js`);
-const fs = require("fs");
+const fs = require(`fs`);
 
 const DEFAULT_COUNT = 1;
 const MAX_COUNT = 1000;
@@ -85,7 +86,7 @@ module.exports = {
   run(params) {
     const count = Number(params[0]) || DEFAULT_COUNT;
     if (count > MAX_COUNT) {
-      throw new Error(`Не больше ${MAX_COUNT} объявлений`);
+      throw new Error(chalk.red(`Не больше ${MAX_COUNT} объявлений`));
     }
     const json = JSON.stringify(generateOffers(count), null, 4);
 
