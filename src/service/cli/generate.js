@@ -2,7 +2,7 @@
 
 const chalk = require(`chalk`);
 const {getRandomNum} = require(`../../utils.js`);
-const fs = require(`fs`);
+const fs = require(`fs`).promises;
 
 const DEFAULT_COUNT = 1;
 const MAX_COUNT = 1000;
@@ -19,7 +19,6 @@ const TITLES = [
   `Продам советскую посуду. Почти не разбита.`,
   `Куплю детские санки.`,
 ];
-
 const DESCRIPTION = [
   `Товар в отличном состоянии.`,
   `Пользовались бережно и только по большим праздникам.`,
@@ -37,7 +36,6 @@ const DESCRIPTION = [
   `Кому нужен этот новый телефон, если тут такое...`,
   `Не пытайтесь торговаться. Цену вещам я знаю.`,
 ];
-
 const CATEGORIES = [
   `Книги`,
   `Разное`,
@@ -46,17 +44,14 @@ const CATEGORIES = [
   `Животные`,
   `Журналы`,
 ];
-
 const TYPE = [
   `offer`,
   `sale`,
 ];
-
 const SUM = {
   MIN: 1000,
   MAX: 100000,
 };
-
 const PICTURE = {
   MIN: 1,
   MAX: 16,
