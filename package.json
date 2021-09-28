@@ -10,7 +10,8 @@
     "test_no_args": "node ./src/service/service.js",
     "test_unknown": "node ./src/service/service.js --ugly",
     "test_help": "node ./src/service/service.js --help",
-    "test_version": "node ./src/service/service.js --version"
+    "test_version": "node ./src/service/service.js --version",
+    "test_generate": "node ./src/service/service.js --generate 10"
   },
   "repository": {
     "type": "git",

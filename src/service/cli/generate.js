@@ -1,8 +1,8 @@
 'use strict';
 
 const chalk = require(`chalk`);
-const {getRandomNum} = require(`../../utils.js`);
 const fs = require(`fs`).promises;
+const {getRandomNum} = require(`../../utils.js`);
 
 const DEFAULT_COUNT = 1;
 const MAX_COUNT = 1000;
@@ -78,13 +78,17 @@ const generateOffers = (count) => {
 
 module.exports = {
   name: `--generate`,
-  run(params) {
+  async run(params) {
     const count = Number(params[0]) || DEFAULT_COUNT;
     if (count > MAX_COUNT) {
       throw new Error(chalk.red(`Не больше ${MAX_COUNT} объявлений`));
     }
     const json = JSON.stringify(generateOffers(count), null, 4);
-
-    fs.writeFileSync(FILE_NAME, json);
+    try {
+      await fs.writeFile(FILE_NAME, json);
+      console.log(chalk.green(`Operation success. File created.`));
+    } catch (err) {
+      console.error(chalk.red(`Can't write data to file...`));
+    }
   }
 };
