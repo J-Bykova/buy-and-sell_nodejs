@@ -1,7 +1,11 @@
 'use strict';
 const chalk = require(`chalk`);
-const fs = require(`fs`).promises;
-const {getRandomNum, getImgName} = require(`../../utils.js`);
+const {
+  getRandomNum,
+  getImgName,
+  readFile,
+  writeFile,
+} = require(`../../utils.js`);
 
 const FILE_DESCRIPTION_PATH = `./data/sentences.txt`;
 const FILE_TITLES_PATH = `./data/titles.txt`;
@@ -32,16 +36,6 @@ module.exports = {
   }
 };
 
-// Записать файл
-async function writeFile(path, content) {
-  try {
-    await fs.writeFile(path, content);
-    console.log(chalk.green(`Operation success. File created.`));
-  } catch (e) {
-    console.error(chalk.red(`Can't write data to file...`));
-  }
-}
-
 // Сгененировать данные
 async function generatePublications(count) {
   const offers = [];
@@ -69,16 +63,6 @@ function validationParam(param) {
     throw new Error(chalk.red(`Не больше ${MAX_COUNT} объявлений`));
   }
   return count;
-}
-
-// Прочитать файл
-async function readFile(path) {
-  try {
-    return await fs.readFile(path, `utf8`);
-  } catch (err) {
-    console.error(chalk.red(err));
-    return ``;
-  }
 }
 
 // Отформатировать файл
