@@ -9,8 +9,7 @@ const FILENAME = `mocks.json`;
 module.exports = {
   name: `--server`,
   run(port) {
-    const serverPort = validationPort(port);
-    createServer(serverPort);
+    createServer(validationPort(port));
   }
 };
 
