@@ -17,7 +17,7 @@ module.exports = {
 function createServer(port) {
   let server = http.createServer();
   server.listen(port)
-    .on(`listening`, (err) => {
+    .on(`listening`, () => {
       console.info(chalk.green(`Ожидаю соединений на ${port}`));
     })
     .on(`error`, ({message}) => {
