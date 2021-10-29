@@ -27,4 +27,3 @@ if (!Cli[command]) {
 }
 
 Cli[command].run(params);
-// process.exit(0);
