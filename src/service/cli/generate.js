@@ -6,11 +6,11 @@ const {
   readFile,
   writeFile,
 } = require(`../../utils.js`);
+const {FILE_NAME} = require(`../../constants`);
 
 const FILE_DESCRIPTION_PATH = `./data/sentences.txt`;
 const FILE_TITLES_PATH = `./data/titles.txt`;
 const FILE_CATEGORIES_PATH = `./data/categories.txt`;
-const FILE_NAME = `mocks.json`;
 const DEFAULT_COUNT = 1;
 const MAX_COUNT = 1000;
 const TYPE = [

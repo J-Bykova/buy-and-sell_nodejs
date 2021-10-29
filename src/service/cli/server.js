@@ -1,17 +1,13 @@
 'use strict';
 const chalk = require(`chalk`);
 const http = require(`http`);
-const fs = require(`fs`).promises;
 const {readFile} = require(`../../utils.js`);
-const {HttpCode} = require(`../../constants`);
-
-const DEFAULT_PORT = 3000;
-const FILENAME = `mocks.json`;
+const {HTTP_CODE, FILE_NAME, DEFAULT_PORT} = require(`../../constants`);
 
 module.exports = {
   name: `--server`,
   run(port) {
-    createServer(validationPort(port));
+    createServer(validatePort(port));
   }
 };
 
@@ -37,15 +33,15 @@ async function clientConnect(request, response) {
   switch (request.url) {
     case `/`:
       try {
-        const title = JSON.parse(await readFile(FILENAME))
+        const title = JSON.parse(await readFile(FILE_NAME))
           .map((post) => `<li>${post.title}</li>`).join(``);
-        sendResponse(response, HttpCode.OK, `<ul>${title}</ul>`);
+        sendResponse(response, HTTP_CODE.OK, `<ul>${title}</ul>`);
       } catch (err) {
-        sendResponse(response, HttpCode.NOT_FOUND, notFoundMessageText);
+        sendResponse(response, HTTP_CODE.NOT_FOUND, notFoundMessageText);
       }
       break;
     default:
-      sendResponse(response, HttpCode.NOT_FOUND, notFoundMessageText);
+      sendResponse(response, HTTP_CODE.NOT_FOUND, notFoundMessageText);
       break;
   }
 }
@@ -63,7 +59,7 @@ function createServer(port) {
 }
 
 // Проверить параметры команды
-function validationPort(port) {
+function validatePort(port) {
   return Number(port[0]) || DEFAULT_PORT;
 }
 
