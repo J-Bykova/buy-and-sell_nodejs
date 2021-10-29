@@ -28,7 +28,7 @@ function sendResponse(response, statusCode, message) {
   response.end(template);
 }
 
-async function clientConnect(request, response) {
+async function onClientConnect(request, response) {
   const notFoundMessageText = `Not found`;
   switch (request.url) {
     case `/`:
@@ -48,7 +48,7 @@ async function clientConnect(request, response) {
 
 // Создаем сервер
 function createServer(port) {
-  let server = http.createServer(clientConnect);
+  let server = http.createServer(onClientConnect);
   server.listen(port)
     .on(`listening`, () => {
       console.info(chalk.green(`Ожидаю соединений на ${port}`));
