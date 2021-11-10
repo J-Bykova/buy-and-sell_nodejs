@@ -1,6 +1,8 @@
 'use strict';
 
-const HTML_CODE = {
+const DEFAULT_PORT = 8080;
+const FILE_NAME = `mocks.json`;
+const HTTP_CODE = {
   OK: 200,
   NOT_FOUND: 404,
   INTERNAL_SERVER_ERROR: 500,
@@ -8,8 +10,6 @@ const HTML_CODE = {
   UNAUTHORIZED: 401,
 };
 
-const DEFAULT_PORT = 3000;
-const FILENAME = `mocks.json`;
 const NOT_FOUND_MESSAGE_TEXT = `Not found`;
 
 const TEXT_HELP = `
@@ -43,9 +43,9 @@ const PICTURE = {
 };
 
 module.exports = {
-  HTML_CODE,
+  HTTP_CODE,
   DEFAULT_PORT,
-  FILENAME,
+  FILE_NAME,
   NOT_FOUND_MESSAGE_TEXT,
   TEXT_HELP,
   FILE_DESCRIPTION_PATH,
