@@ -5,13 +5,12 @@
   "main": "./src/service/service.js",
   "scripts": {
     "start": "node ./src/service/service.js",
+    "dev": "nodemon src/express/express.js",
     "test": "npm run eslint",
     "eslint": "eslint --ext .js src/",
-    "test_no_args": "node ./src/service/service.js",
-    "test_unknown": "node ./src/service/service.js --ugly",
-    "test_help": "node ./src/service/service.js --help",
-    "test_version": "node ./src/service/service.js --version",
-    "test_generate": "node ./src/service/service.js --generate 10"
+    "help": "node ./src/service/service.js --help",
+    "version": "node ./src/service/service.js --version",
+    "generate": "node ./src/service/service.js --generate"
   },
   "repository": {
     "type": "git",
@@ -25,9 +24,11 @@
   "homepage": "https://github.com/Jenia-b/206693-buy-and-sell-3#readme",
   "devDependencies": {
     "eslint": "7.32.0",
-    "eslint-config-htmlacademy": "0.6.0"
+    "eslint-config-htmlacademy": "0.6.0",
+    "nodemon": "^2.0.14"
   },
   "dependencies": {
-    "chalk": "4.1.2"
+    "chalk": "4.1.2",
+    "express": "4.17.1"
   }
 }
