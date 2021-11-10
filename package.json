@@ -7,10 +7,7 @@
     "start": "node ./src/service/service.js",
     "dev": "nodemon src/express/express.js",
     "test": "npm run eslint",
-    "eslint": "eslint --ext .js src/",
-    "help": "node ./src/service/service.js --help",
-    "version": "node ./src/service/service.js --version",
-    "generate": "node ./src/service/service.js --generate"
+    "eslint": "eslint --ext .js src/"
   },
   "repository": {
     "type": "git",

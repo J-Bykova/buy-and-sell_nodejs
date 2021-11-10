@@ -21,7 +21,7 @@ const {
 module.exports = {
   name: `--generate`,
   async run(params) {
-    const count = validationParam(params);
+    const count = validateParam(params);
     const publications = await generatePublications(count);
     const output = formatOutput(publications);
     await writeFile(FILENAME, output);
@@ -49,7 +49,7 @@ async function generatePublications(count) {
 }
 
 // Проверить параметры команды
-function validationParam(param) {
+function validateParam(param) {
   const count = Number(param[0]) || DEFAULT_PUBLICATION_COUNT;
   if (count > MAX_PUBLICATION_COUNT) {
     throw new Error(chalk.red(`Не больше ${MAX_PUBLICATION_COUNT} объявлений`));
