@@ -6,25 +6,17 @@ const {
   readFile,
   writeFile,
 } = require(`../../utils.js`);
-
-const FILE_DESCRIPTION_PATH = `./data/sentences.txt`;
-const FILE_TITLES_PATH = `./data/titles.txt`;
-const FILE_CATEGORIES_PATH = `./data/categories.txt`;
-const FILE_NAME = `mocks.json`;
-const DEFAULT_COUNT = 1;
-const MAX_COUNT = 1000;
-const TYPE = [
-  `offer`,
-  `sale`,
-];
-const SUM = {
-  MIN: 1000,
-  MAX: 100000,
-};
-const PICTURE = {
-  MIN: 1,
-  MAX: 16,
-};
+const {
+  FILENAME,
+  FILE_DESCRIPTION_PATH,
+  FILE_TITLES_PATH,
+  FILE_CATEGORIES_PATH,
+  DEFAULT_PUBLICATION_COUNT,
+  MAX_PUBLICATION_COUNT,
+  SUM,
+  PICTURE,
+  TYPE
+} = require(`../../constants`);
 
 module.exports = {
   name: `--generate`,
@@ -32,7 +24,7 @@ module.exports = {
     const count = validationParam(params);
     const publications = await generatePublications(count);
     const output = formatOutput(publications);
-    await writeFile(FILE_NAME, output);
+    await writeFile(FILENAME, output);
   }
 };
 
@@ -58,9 +50,9 @@ async function generatePublications(count) {
 
 // Проверить параметры команды
 function validationParam(param) {
-  const count = Number(param[0]) || DEFAULT_COUNT;
-  if (count > MAX_COUNT) {
-    throw new Error(chalk.red(`Не больше ${MAX_COUNT} объявлений`));
+  const count = Number(param[0]) || DEFAULT_PUBLICATION_COUNT;
+  if (count > MAX_PUBLICATION_COUNT) {
+    throw new Error(chalk.red(`Не больше ${MAX_PUBLICATION_COUNT} объявлений`));
   }
   return count;
 }
