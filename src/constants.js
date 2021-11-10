@@ -1,6 +1,6 @@
 'use strict';
 
-const DEFAULT_PORT = 3000;
+const DEFAULT_PORT = 8080;
 const FILE_NAME = `mocks.json`;
 const HTTP_CODE = {
   OK: 200,
