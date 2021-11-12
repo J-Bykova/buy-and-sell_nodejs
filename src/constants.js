@@ -1,5 +1,6 @@
 'use strict';
 
+const PUBLIC_DIR = `public`;
 const DEFAULT_PORT = 8080;
 const FILE_NAME = `mocks.json`;
 const HTTP_CODE = {
@@ -43,6 +44,7 @@ const PICTURE = {
 };
 
 module.exports = {
+  PUBLIC_DIR,
   HTTP_CODE,
   DEFAULT_PORT,
   FILE_NAME,
