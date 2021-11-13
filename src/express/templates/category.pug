@@ -1,0 +1,49 @@
+extends layout.pug
+
+block content
+  main.page-content
+    section.categories-list
+      h1.visually-hidden Сервис объявлений "Куплю - продам"
+      ul.categories-list__wrapper
+        li.categories-list__item
+          a.category-tile(href='#')
+            span.category-tile__image
+              img(src='../src/express/public/img/cat.jpg' srcset='../src/express/public/img/cat@2x.jpg 2x' alt='Иконка категории')
+            span.category-tile__label
+              | Дом
+              span.category-tile__qty.js-qty 81
+        li.categories-list__item
+          a.category-tile.category-tile--active(href='#')
+            span.category-tile__image
+              img(src='../src/express/public/img/cat02.jpg' srcset='../src/express/public/img/cat02@2x.jpg 2x' alt='Иконка категории')
+            span.category-tile__label
+              | Электроника
+              span.category-tile__qty.js-qty 62
+        li.categories-list__item
+          a.category-tile(href='#')
+            span.category-tile__image
+              img(src='../src/express/public/img/cat03.jpg' srcset='../src/express/public/img/cat03@2x.jpg 2x' alt='Иконка категории')
+            span.category-tile__label
+              | Одежда
+              span.category-tile__qty.js-qty 106
+        li.categories-list__item
+          a.category-tile(href='#')
+            span.category-tile__image
+              img(src='../src/express/public/img/cat04.jpg' srcset='../src/express/public/img/cat04@2x.jpg 2x' alt='Иконка категории')
+            span.category-tile__label
+              | Спорт/отдых
+              span.category-tile__qty.js-qty 86
+        li.categories-list__item
+          a.category-tile(href='#')
+            span.category-tile__image
+              img(src='../src/express/public/img/cat05.jpg' srcset='../src/express/public/img/cat05@2x.jpg 2x' alt='Иконка категории')
+            span.category-tile__label
+              | Авто
+              span.category-tile__qty.js-qty 34
+        li.categories-list__item
+          a.category-tile(href='#')
+            span.category-tile__image
+              img(src='../src/express/public/img/cat06.jpg' srcset='../src/express/public/img/cat06@2x.jpg 2x' alt='Иконка категории')
+            span.category-tile__label
+              | Книги
+              span.category-tile__qty.js-qty 92

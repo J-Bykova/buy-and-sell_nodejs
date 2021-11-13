@@ -5,7 +5,7 @@
   "main": "./src/service/service.js",
   "scripts": {
     "start": "node ./src/service/service.js",
-    "dev": "nodemon src/express/express.js > log.txt",
+    "dev": "nodemon src/express/express.js",
     "test": "npm run eslint",
     "eslint": "eslint --ext .js src/"
   },
