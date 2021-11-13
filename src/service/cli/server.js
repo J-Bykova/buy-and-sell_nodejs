@@ -2,7 +2,7 @@
 const chalk = require(`chalk`);
 const http = require(`http`);
 const {readFile} = require(`../../utils.js`);
-const {HTTP_CODE, FILE_NAME, DEFAULT_PORT} = require(`../../constants`);
+const {HTTP_CODE, FILE_NAME, DEFAULT_PORT, NOT_FOUND_MESSAGE_TEXT} = require(`../../constants`);
 
 module.exports = {
   name: `--server`,
@@ -11,25 +11,28 @@ module.exports = {
   }
 };
 
-function sendResponse(response, statusCode, message) {
-  const template = `
+function buildPage(content) {
+  return `
     <!Doctype html>
       <html lang="ru">
       <head>
         <title>With love from Node</title>
       </head>
-      <body>${message}</body>
-    </html>`.trim();
+      <body>${content}</body>
+    </html>`;
+}
+
+function sendResponse(response, statusCode, message) {
+  const html = buildPage(message);
 
   response.writeHead(statusCode, {
     'Content-Type': `text/html; charset=UTF-8`,
   });
 
-  response.end(template);
+  response.end(html);
 }
 
 async function onClientConnect(request, response) {
-  const notFoundMessageText = `Not found`;
   switch (request.url) {
     case `/`:
       try {
@@ -37,18 +40,18 @@ async function onClientConnect(request, response) {
           .map((post) => `<li>${post.title}</li>`).join(``);
         sendResponse(response, HTTP_CODE.OK, `<ul>${title}</ul>`);
       } catch (err) {
-        sendResponse(response, HTTP_CODE.NOT_FOUND, notFoundMessageText);
+        sendResponse(response, HTTP_CODE.NOT_FOUND, NOT_FOUND_MESSAGE_TEXT);
       }
       break;
     default:
-      sendResponse(response, HTTP_CODE.NOT_FOUND, notFoundMessageText);
+      sendResponse(response, HTTP_CODE.NOT_FOUND, NOT_FOUND_MESSAGE_TEXT);
       break;
   }
 }
 
 // Создаем сервер
 function createServer(port) {
-  let server = http.createServer(onClientConnect);
+  const server = http.createServer(onClientConnect);
   server.listen(port)
     .on(`listening`, () => {
       console.info(chalk.green(`Ожидаю соединений на ${port}`));

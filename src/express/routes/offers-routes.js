@@ -3,9 +3,9 @@
 const {Router} = require(`express`);
 const offersRouter = new Router();
 
-offersRouter.get(`/category/:id`, (req, res) => res.send(`/offers/category/:id`));
-offersRouter.get(`/add`, (req, res) => res.send(`/offers/add`));
-offersRouter.get(`/edit/:id`, (req, res) => res.send(`/offers/edit/:id`));
-offersRouter.get(`/:id`, (req, res) => res.send(`/offers/:id`));
+offersRouter.get(`/category/:id`, (req, res) => res.render(`partials/category.pug`));
+offersRouter.get(`/add`, (req, res) => res.render(`new-ticket`));
+offersRouter.get(`/edit/:id`, (req, res) => res.render(`ticket-edit`));
+offersRouter.get(`/:id`, (req, res) => res.render(`ticket`));
 
 module.exports = offersRouter;
