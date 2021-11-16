@@ -1,68 +1,28 @@
 'use strict';
+const express = require(`express`);
 const chalk = require(`chalk`);
-const http = require(`http`);
-const {readFile} = require(`../../utils.js`);
-const {HTTP_CODE, FILE_NAME, DEFAULT_PORT, NOT_FOUND_MESSAGE_TEXT} = require(`../../constants`);
+const {DEFAULT_PORT} = require(`../../constants`);
+const offersRoutes = require(`./routers/offers-router`);
 
 module.exports = {
   name: `--server`,
   run(port) {
-    createServer(validatePort(port));
+    const PORT = validatePort(port);
+    app.listen(PORT, (error) => {
+      if (error) {
+        console.error(chalk.red(error));
+      } else {
+        console.info(chalk.green(`Server is listening on port: ${PORT}`));
+      }
+    });
   }
 };
 
-function buildPage(content) {
-  return `
-    <!Doctype html>
-      <html lang="ru">
-      <head>
-        <title>With love from Node</title>
-      </head>
-      <body>${content}</body>
-    </html>`;
-}
-
-function sendResponse(response, statusCode, message) {
-  const html = buildPage(message);
-
-  response.writeHead(statusCode, {
-    'Content-Type': `text/html; charset=UTF-8`,
-  });
-
-  response.end(html);
-}
-
-async function onClientConnect(request, response) {
-  switch (request.url) {
-    case `/`:
-      try {
-        const title = JSON.parse(await readFile(FILE_NAME))
-          .map((post) => `<li>${post.title}</li>`).join(``);
-        sendResponse(response, HTTP_CODE.OK, `<ul>${title}</ul>`);
-      } catch (err) {
-        sendResponse(response, HTTP_CODE.NOT_FOUND, NOT_FOUND_MESSAGE_TEXT);
-      }
-      break;
-    default:
-      sendResponse(response, HTTP_CODE.NOT_FOUND, NOT_FOUND_MESSAGE_TEXT);
-      break;
-  }
-}
-
-// Создаем сервер
-function createServer(port) {
-  const server = http.createServer(onClientConnect);
-  server.listen(port)
-    .on(`listening`, () => {
-      console.info(chalk.green(`Ожидаю соединений на ${port}`));
-    })
-    .on(`error`, ({message}) => {
-      console.error(chalk.red(`Ошибка при создании сервера: ${message}`));
-    });
-}
+const app = express();
+app.use(express.json());
+app.use(`/offers`, offersRoutes);
 
 // Проверить параметры команды
 function validatePort(port) {
   return Number(port[0]) || DEFAULT_PORT;
 }
-
