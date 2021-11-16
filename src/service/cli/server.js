@@ -2,7 +2,8 @@
 const chalk = require(`chalk`);
 const http = require(`http`);
 const {readFile} = require(`../../utils.js`);
-const {HTTP_CODE, FILE_NAME, DEFAULT_PORT, NOT_FOUND_MESSAGE_TEXT} = require(`../../constants`);
+const {FILE_NAME, HTTP_CODE, DEFAULT_PORT} = require(`../../constants`);
+const NOT_FOUND_MESSAGE_TEXT = `Not found`;
 
 module.exports = {
   name: `--server`,

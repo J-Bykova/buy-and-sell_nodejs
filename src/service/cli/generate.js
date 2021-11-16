@@ -6,17 +6,24 @@ const {
   readFile,
   writeFile,
 } = require(`../../utils.js`);
-const {
-  FILENAME,
-  FILE_DESCRIPTION_PATH,
-  FILE_TITLES_PATH,
-  FILE_CATEGORIES_PATH,
-  DEFAULT_PUBLICATION_COUNT,
-  MAX_PUBLICATION_COUNT,
-  SUM,
-  PICTURE,
-  TYPE
-} = require(`../../constants`);
+const {FILE_NAME} = require(`../../constants`);
+const FILE_DESCRIPTION_PATH = `./data/sentences.txt`;
+const FILE_TITLES_PATH = `./data/titles.txt`;
+const FILE_CATEGORIES_PATH = `./data/categories.txt`;
+const DEFAULT_PUBLICATION_COUNT = 1;
+const MAX_PUBLICATION_COUNT = 1000;
+const TYPE = [
+  `offer`,
+  `sale`,
+];
+const SUM = {
+  MIN: 1000,
+  MAX: 100000,
+};
+const PICTURE = {
+  MIN: 1,
+  MAX: 16,
+};
 
 module.exports = {
   name: `--generate`,
@@ -24,7 +31,7 @@ module.exports = {
     const count = validateParam(params);
     const publications = await generatePublications(count);
     const output = formatOutput(publications);
-    await writeFile(FILENAME, output);
+    await writeFile(FILE_NAME, output);
   }
 };
 
