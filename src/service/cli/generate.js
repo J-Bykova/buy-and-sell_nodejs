@@ -1,5 +1,6 @@
 'use strict';
 const chalk = require(`chalk`);
+const {nanoid} = require(`nanoid`);
 const {
   getRandomNum,
   getImgName,
@@ -24,6 +25,7 @@ const PICTURE = {
   MIN: 1,
   MAX: 16,
 };
+const MAX_ID_LENGTH = 6;
 
 module.exports = {
   name: `--generate`,
@@ -44,6 +46,7 @@ async function generatePublications(count) {
 
   for (let i = 0; i < count; i++) {
     offers.push({
+      id: nanoid(MAX_ID_LENGTH),
       type: TYPE[getRandomNum(0, TYPE.length - 1)],
       title: titleList[getRandomNum(0, titleList.length - 1)],
       description: descriptionList[getRandomNum(0, descriptionList.length - 1)],
