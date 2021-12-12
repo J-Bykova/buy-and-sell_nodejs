@@ -32,9 +32,21 @@ async function writeFile(path, content) {
   }
 }
 
+function randomlySwapAllElements(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    const randomPosition = getRandomNum(0, arr.length - 1);
+    const tempArr = arr[i];
+    arr[i] = arr[randomPosition];
+    arr[randomPosition] = tempArr;
+  }
+
+  return arr;
+}
+
 module.exports = {
   getRandomNum,
   getImgName,
   readFile,
   writeFile,
+  randomlySwapAllElements,
 };
