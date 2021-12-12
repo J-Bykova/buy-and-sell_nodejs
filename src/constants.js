@@ -1,5 +1,5 @@
 'use strict';
-const FILE_NAME = `mocks.json`;
+const MOCKS_PATH = `mocks.json`;
 const DEFAULT_PORT = 8080;
 const HTTP_CODE = {
   OK: 200,
@@ -11,7 +11,7 @@ const HTTP_CODE = {
 const PUBLIC_DIR = `public`;
 
 module.exports = {
-  FILE_NAME,
+  MOCKS_PATH,
   DEFAULT_PORT,
   HTTP_CODE,
   PUBLIC_DIR,

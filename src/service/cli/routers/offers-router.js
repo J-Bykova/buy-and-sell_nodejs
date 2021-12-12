@@ -1,17 +1,10 @@
 'use strict';
 const {Router} = require(`express`);
-const {readFile} = require(`../../../utils`);
-const {FILE_NAME} = require(`../../../constants`);
+const getMockData = require(`../../lib/get-mock-data`);
 const offersRouter = new Router();
 
 offersRouter.get(`/`, async (req, res) => {
-  try {
-    const content = await readFile(FILE_NAME);
-    const mocks = JSON.parse(content);
-    res.json(mocks);
-  } catch (err) {
-    res.send([]);
-  }
+  res.send(getMockData());
 });
 
 module.exports = offersRouter;

@@ -9,7 +9,7 @@ const {
   randomlySwapAllElements,
 } = require(`../../utils.js`);
 
-const {FILE_NAME} = require(`../../constants`);
+const {MOCKS_PATH} = require(`../../constants`);
 const FILE_DESCRIPTION_PATH = `./data/sentences.txt`;
 const FILE_TITLES_PATH = `./data/titles.txt`;
 const FILE_CATEGORIES_PATH = `./data/categories.txt`;
@@ -39,7 +39,7 @@ module.exports = {
     const count = validateParam(params);
     const publications = await generatePublications(count);
     const output = formatOutput(publications);
-    await writeFile(FILE_NAME, output);
+    await writeFile(MOCKS_PATH, output);
   }
 };
 
